@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     tools { 
-        maven 'Maven' 
+        maven 'maven' 
       
     }
 stages { 
@@ -12,7 +12,8 @@ stages {
 
       // Get some code from a GitHub repository
 
-      git 'https://github.com/raknas999/hello-world-servlet.git'
+      //git 'https://github.com/raknas999/hello-world-servlet.git'
+      git 'https://github.com/kankolamramkumar/hello-world-servlet.git'
 
       // Get the Maven tool.
      
