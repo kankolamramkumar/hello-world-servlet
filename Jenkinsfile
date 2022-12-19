@@ -72,7 +72,7 @@ stages {
         sh label: '', script: 'ansible-playbook deploy.yml'
       }
  }
-}
+//}
 post {
         success {
             mail to:"raknas000@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Build success"
