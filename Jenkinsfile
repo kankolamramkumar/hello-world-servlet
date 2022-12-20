@@ -19,12 +19,15 @@ stages {
                 }
              }
         stage('Check the Code Qulity') {
+            environment {
+            scannerHome = tool 'sonarqube'
+                 }
             steps {
-                withSonarQubeEnv {
-               // some block
-                      }
-                   }
-            }
+               withSonarQubeEnv('sonarqube') {
+               sh "${scannerHome}/bin/sonar-scanner"
+                        }
+                  }
+              }
 
 
          }
