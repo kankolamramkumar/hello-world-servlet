@@ -13,11 +13,19 @@ stages {
                 checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kankolamramkumar/hello-world-servlet.git']]])
                 }
              }
-         stage('Run Unit Test Cases') {
+        stage('Run Unit Test Cases') {
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install'
                 }
              }
+        stage('Check the Code Qulity') {
+            steps {
+                withSonarQubeEnv {
+               // some block
+                      }
+                   }
+            }
+
 
          }
 
