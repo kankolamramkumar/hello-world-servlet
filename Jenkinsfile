@@ -15,7 +15,7 @@ stages {
              }
          stage('Run Unit Test Cases') {
             steps {
-                sh 'clean test'
+                sh 'mvn -Dmaven.test.failure.ignore=true install'
                 }
              }
 
