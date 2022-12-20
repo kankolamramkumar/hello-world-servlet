@@ -2,6 +2,7 @@ pipeline {
     agent any 
     tools { 
         maven 'Maven' 
+        This 'M3' Maven tool must be configured
       
     }
 stages { 
