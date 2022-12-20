@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     tools { 
-        maven 'maven' 
+        maven 'Maven' 
       
     }
 stages { 
@@ -12,8 +12,7 @@ stages {
 
       // Get some code from a GitHub repository
 
-      //git 'https://github.com/raknas999/hello-world-servlet.git'
-      git 'https://github.com/kankolamramkumar/hello-world-servlet.git'
+      git 'https://github.com/raknas999/hello-world-servlet.git'
 
       // Get the Maven tool.
      
@@ -42,24 +41,23 @@ stages {
       archiveArtifacts 'target/*.war'
       }
  }
- //stage('Sonarqube') {
-  //  environment {
-  //      scannerHome = tool 'sonarqube'
+ stage('Sonarqube') {
+    environment {
+        scannerHome = tool 'sonarqube'
     }
-  //  steps {
-   //     withSonarQubeEnv('sonarqube') {
-   //         sh "${scannerHome}/bin/sonar-scanner"
+    steps {
+        withSonarQubeEnv('sonarqube') {
+            sh "${scannerHome}/bin/sonar-scanner"
         }
   //      timeout(time: 10, unit: 'MINUTES') {
  //           waitForQualityGate abortPipeline: true
   //      }
-   // }
-//}
+    }
+}
      stage('Artifact upload') {
       steps {
      //nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/helloworld.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
-      //nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/helloworld.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
-       nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '*./target/helloworld.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
+      nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/helloworld.war']], mavenCoordinate: [artifactId: 'hello-world-servlet-example', groupId: 'com.geekcap.vmturbo', packaging: 'war', version: '$BUILD_NUMBER']]]
       }
  }
     
@@ -73,7 +71,7 @@ stages {
         sh label: '', script: 'ansible-playbook deploy.yml'
       }
  }
-//}
+}
 post {
         success {
             mail to:"raknas000@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Build success"
@@ -82,4 +80,4 @@ post {
             mail to:"raknas000@gmail.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Build failed"
         }
     }       
-//}
+}
