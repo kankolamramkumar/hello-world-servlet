@@ -5,12 +5,7 @@ pipeline {
         maven "maven"
 
     }
-    options { buildDiscarder(logRotator(numToKeepStr: '1')) }
-    
-    parameters {
-        string envi
-        string path
-        }
+   
 stages { 
         stage('Checkout') {
             steps {
