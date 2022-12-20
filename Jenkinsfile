@@ -2,7 +2,7 @@ pipeline {
     agent any 
     tools { 
         maven 'Maven' 
-        This 'M3' Maven tool must be configured
+        Install the Maven version configured as "M3" and add it to the path
       
     }
 stages { 
