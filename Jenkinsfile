@@ -35,7 +35,7 @@ stages {
                }
          stage('Deploy War') {
              steps {
-              deploy adapters: [tomcat8(credentialsId: 'tomcat-cred', path: '', url: 'http://18.217.246.251:8080/')], contextPath: 'HelloWorldServlet', war: '**/*.war'
+              deploy adapters: [tomcat8(credentialsId: 'tomcat-cred', path: '', url: 'http://18.116.238.90:8080/')], contextPath: 'HelloWorldServlet', war: '**/*.war'
                    }
               }
 
